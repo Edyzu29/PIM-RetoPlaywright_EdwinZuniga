@@ -22,13 +22,17 @@ def name_rng() -> tuple:
     return first_name, last_name, middle_name,username
 
 def password_rng(long = 8) -> str:
+    caracteres = string.ascii_letters + string.digits + string.punctuation
 
-    caracteres = string.ascii_letters + string.digits + string.punctuation + string.ascii_letters.upper()
-    password = ''.join(secrets.choice(caracteres) for i in range(long))
+    while True:
+        
+        password = ''.join(random.choice(caracteres) for _ in range(long))
 
-    password += password + str(random.randint(0,99))
-
-    return password
+        if (any(c.islower() for c in password) and      
+            any(c.isupper() for c in password) and      
+            any(c.isdigit() for c in password) and      
+            any(c in string.punctuation for c in password)):  
+            return password
 
 def id_genetaror() -> str:
 

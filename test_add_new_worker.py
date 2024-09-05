@@ -22,18 +22,37 @@ def test_add_new_worker():
         
         password_employee = password_rng()
 
+        pause = 2
+
         pim_page.pim_page()
         pim_page.add_employee(fname=fname, mname= mname, lname=lname, id_employee=id_employee)
-        time.sleep(4)
+        time.sleep(pause)
         pim_page.add_employee_details(uname=uname, password=password_employee)
-        time.sleep(4)
+        time.sleep(pause)
         pim_page.save_cancel_employee()
-        time.sleep(4)
+        time.sleep(pause)
         pim_page.searh_employee(id_employee=id_employee)
-        time.sleep(4)
-        pim_page.check_search(id_employee=id_employee)
-        time.sleep(4)
+        time.sleep(pause)
+        pim_page.check_search()
+        time.sleep(pause)
 
         driver.close()
-        
+
+
+class Orange_testing:
+
+    def __init__(self) -> None:
+        self.fname, self.lname, self.mname, self.uname = name_rng()
+        self.id_employee = id_genetaror()
+        self.password_employee = password_rng()
+        self.pause = 2
+
+    #Pruebas de valores
+
+    #Prueba de casos
+    def creat_new_employee(self):
+
+        with sync_playwright() as pw:
+
+
 test_add_new_worker()

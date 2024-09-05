@@ -65,8 +65,11 @@ class PIMPage:
             self.button_cancel.click()
 
     def searh_employee(self, id_employee, action = True):
+        
+        self.button_pim.wait_for(state="visible", timeout=5000)
         self.button_pim.click()
 
+        self.search_for_id.wait_for(state="visible", timeout=5000)
         self.search_for_id.fill(id_employee)
 
         if action:
@@ -75,7 +78,7 @@ class PIMPage:
         else:
             self.button_reset.click()
 
-    def check_search(self, id_employee):
+    def check_search(self):
 
         id_result = self.result_search.text_content()
         print(id_result)
