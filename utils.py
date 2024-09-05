@@ -40,3 +40,12 @@ def id_genetaror() -> str:
     id_full = f'{id_raw:04}'
 
     return id_full
+
+def add_random_space(name):
+    if len(name) < 2:
+        return name  
+    
+    position = random.randint(1, len(name) - 1)
+    
+    new_string = name[:position] + ' ' + name[position:]
+    return new_string

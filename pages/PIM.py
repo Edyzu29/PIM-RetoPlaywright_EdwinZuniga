@@ -1,6 +1,7 @@
 from playwright.sync_api import Page
 from pages.locatores import *
 from utils import *
+import time
 
 class PIMPage:
     def __init__(self, page: Page):
@@ -30,6 +31,10 @@ class PIMPage:
         self.button_reset = page.locator(button_reset_field)
 
         self.result_search = page.locator(result_field)
+
+        self.successfully_creation = page.locator(create_successful_field)
+
+        self.msg_id_exist = page.locator(msg_alert_field)
 
     def pim_page(self):
         self.button_pim.click()
@@ -81,5 +86,22 @@ class PIMPage:
     def check_search(self):
 
         id_result = self.result_search.text_content()
-        print(id_result)
+        return id_result
         
+    def check_creation(self):
+
+        time.sleep(10)
+        employee_name = self.successfully_creation.text_content()
+
+        employee_name_particion = employee_name.split()
+
+        return employee_name_particion[0], employee_name_particion[-1]
+    
+    def msg_alert_id(self):
+
+        time.sleep(4)
+        while self.msg_id_exist.is_visible():
+            self.employee_id.clear()
+            id_employee = id_genetaror()
+            self.employee_id.fill(id_employee)
+            time.sleep(4)
